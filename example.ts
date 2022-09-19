@@ -33,6 +33,10 @@ nips.start(
   "${this.n.dots.success()} first spin success !\n${this.n.arc.fail()} second spin fail ...",
 );
 await delay(2000);
+nips.start(
+  "${this.n.dots.fail()} first spin fail ...\n${this.n.arc.success()} second spin success !",
+);
+await delay(2000);
 nips.stop(
   "${this.n.dots.success()} first spin success !\n${this.n.arc.success()} second spin success !",
 );
