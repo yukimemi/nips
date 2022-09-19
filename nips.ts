@@ -35,12 +35,10 @@ export class Nips {
   private render(text = "") {
     const lineCnt = this.text.split("\n").length - 1;
     this.text = eval("`" + text + "`");
-    if (lineCnt) {
-      writeAllSync(
-        this.writer,
-        this.textEncoder.encode(`\x1b[${lineCnt}F\x1b[0J`),
-      );
-    }
+    writeAllSync(
+      this.writer,
+      this.textEncoder.encode(`${lineCnt ? `\x1b[${lineCnt}F` : ""}\x1b[0J`),
+    );
     writeAllSync(
       this.writer,
       this.textEncoder.encode(
