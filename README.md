@@ -12,7 +12,7 @@ deno run -A https://deno.land/x/nips/example.ts
 ```typescript
 import { delay } from "https://deno.land/std@0.156.0/async/delay.ts";
 import * as colors from "https://deno.land/std@0.156.0/fmt/colors.ts";
-import { Nip, Nips } from "./mod.ts";
+import { Nip, Nips } from "https://deno.land/x/nips/mod.ts";
 
 const dots = new Nip(
   ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"].map(colors.cyan),
