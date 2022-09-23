@@ -27,9 +27,12 @@ export class Nips {
     return this;
   }
 
-  public stop(text = "") {
+  public stop(text = "", clear = true) {
     clearInterval(this.intervalId);
     this.render(text);
+    if (clear) {
+      this.text = "";
+    }
   }
 
   private render(text = "") {

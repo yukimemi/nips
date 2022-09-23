@@ -33,23 +33,32 @@ const nips = new Nips({
 
 nips.start("${this.n.dots.spin()} start spin ...");
 await delay(2000);
+nips.stop();
+await delay(2000);
+const variableText = "This is variable text";
+nips.start(`\${this.n.dots.spin()} ${variableText}`);
+await delay(2000);
 nips.start("${this.n.dots.fail()} fail spin !");
 await delay(2000);
 nips.start("${this.n.dots.spin()} restart spin ...");
 await delay(2000);
 nips.start(
-  "${this.n.dots.spin()} first spin ...\n${this.n.arc.spin()} second spin ...",
-);
-await delay(2000);
-nips.start(
-  "${this.n.dots.success()} first spin success !\n${this.n.arc.fail()} second spin fail ...",
-);
-await delay(2000);
-nips.start(
-  "${this.n.dots.fail()} first spin fail ...\n${this.n.arc.success()} second spin success !",
+  "${this.n.dots.spin()} 1st spin ...\n${this.n.arc.spin()} 2nd spin ...",
 );
 await delay(2000);
 nips.stop(
-  "${this.n.dots.success()} first spin success !\n${this.n.arc.success()} second spin success !",
+  "${this.n.dots.success()} 1st spin success !\n${this.n.arc.fail()} 2nd spin fail ...",
 );
+await delay(2000);
+nips.start("${this.n.arc.spin()} 2nd spin restart !");
+await delay(2000);
+nips.start(
+  "${this.n.arc.spin()} 2nd spin ...\n${this.n.dots.spin()} 3rd start spin ...",
+);
+await delay(2000);
+nips.stop(
+  "${this.n.arc.success()} 2nd spin success !\n${this.n.dots.success()} 3rd spin success !\n",
+);
+await delay(2000);
+nips.stop("${this.n.dots.success()} ALL SUCCESS !\n");
 ```
