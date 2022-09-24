@@ -27,25 +27,35 @@ export class Nips {
     return this;
   }
 
-  public stop(text = "", clear = true) {
+  public stop(text = "") {
     clearInterval(this.intervalId);
     this.render(text);
-    if (clear) {
-      this.text = "";
-    }
+    this.text = "";
+  }
+
+  public clear(lineCnt = 1) {
+    lineCnt -= 1;
+    this.clearLine(lineCnt);
+    this.text = "";
   }
 
   private render(text = "") {
     const lineCnt = this.text.split("\n").length - 1;
     this.text = eval("`" + text + "`");
-    writeAllSync(
-      this.writer,
-      this.textEncoder.encode(`${lineCnt ? `\x1b[${lineCnt}F` : ""}\x1b[0J`),
-    );
+    this.clearLine(lineCnt);
     writeAllSync(
       this.writer,
       this.textEncoder.encode(
         `\r${this.text}`,
+      ),
+    );
+  }
+
+  private clearLine(lineCnt: number) {
+    writeAllSync(
+      this.writer,
+      this.textEncoder.encode(
+        `${lineCnt ? `\x1b[${lineCnt}F` : ""}\x1b[0J\x1b[0K`,
       ),
     );
   }
